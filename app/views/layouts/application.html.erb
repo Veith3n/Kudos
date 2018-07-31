@@ -18,6 +18,7 @@
       <% if message = flash[:notice].presence %>
         <p class="bg-success"><%= message %></p>
       <% end %>
+      <%= render :partial => 'flash_messages', :flash => flash %>
       <%= yield %>
     </div>
   </div>
