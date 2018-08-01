@@ -7,17 +7,15 @@
 
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag "application" %>
+  <%= custom_bootstrap_flash %>
 </head>
 
 <body>
 <div class="container">
   <div class="row text-center">
     <div class="col-md-8 col-md-offset-2">
-      <h1 class="text-center">Kudos App</h1>
 
-      <% if message = flash[:notice].presence %>
-        <p class="bg-success"><%= message %></p>
-      <% end %>
       <%= render :partial => 'flash_messages', :flash => flash %>
       <%= yield %>
     </div>
