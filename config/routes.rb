@@ -9,6 +9,12 @@ Rails.application.routes.draw do
   devise_for :users, skip: [:sessions]
 
   resources :users, only: [:index]
+  resources :teams, only: [:index, :show] do
+    member do
+      get '/add_member' => 'teams#add_member'
+      get '/remove_member' => 'teams#remove_member'
+    end
+  end
 
   get 'landing_page/index'
 
