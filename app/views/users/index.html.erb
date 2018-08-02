@@ -1,1 +1,24 @@
 <h1>Users</h1>
+
+<table class="table"
+       data-pagination="true"
+       data-page-size=5>
+  <thead>
+  <tr>
+    <th class="text-center">Name</th>
+    <th class="text-center">Description</th>
+    <th class="text-center">Kudos Count</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <%= will_paginate @users %>
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.name %></td>
+      <td><%= user.surname %></td>
+      <td><%= user.kudos_count %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
