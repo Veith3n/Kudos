@@ -1,0 +1,37 @@
+<h1><%= @team.name %></h1>
+<h2>Team motto: <%= @team.description %></h2>
+<div class="container">
+
+  <div class="row text-left">
+    <div class="col-md-5 col-md-offset-1">
+      <table class="table table-striped" style="margin-top: 20px">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Surname</th>
+          <th scope="col" class="text-center">Kudos Count</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @team.users.order(kudos_count: :desc).each_with_index do |member, index| %>
+          <tr>
+            <th scope="row"> <%= index + 1 %></th>
+            <td><%= member.name %></td>
+            <td><%= member.surname %></td>
+            <td class="col-md-1 text-center"><%= member.kudos_count %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+      <% if user_signed_in? %>
+        <% if current_user.teams.include?(@team) %>
+          <%= link_to 'Leave', remove_member_team_path, class: 'btn btn-default' %>
+        <% else %>
+          <%= link_to 'Join', add_member_team_path, class: 'btn btn-default' %>
+        <% end %>
+      <% end %>
+      <%= link_to 'Back to all teams', teams_path, class: 'btn btn-default to-right' %>
+    </div>
+  </div>
+</div>

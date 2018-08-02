@@ -1,0 +1,19 @@
+<h1>Teams</h1>
+
+<table class="table">
+  <thead>
+  <tr>
+    <th class="text-center">Name</th>
+    <th class="text-center">Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @teams.each do |team| %>
+    <tr>
+      <td><%= team.name %></td>
+      <td><%= team.description %></td>
+      <td><%= link_to 'Show', team_path(team) %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

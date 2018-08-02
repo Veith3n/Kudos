@@ -20,4 +20,9 @@ module ApplicationHelper
       text.html_safe if message
     end.join("\n").html_safe
   end
+
+  def current_class?(path)
+    return 'active' if request.path == path
+    ''
+  end
 end
