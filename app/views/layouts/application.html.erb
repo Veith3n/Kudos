@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <%= render partial: 'shared/navbar' %>
+
+  <title>Kudos</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag "application" %>
+  <%= custom_bootstrap_flash %>
+</head>
+
+<body>
+<div class="container">
+  <div class="row text-center">
+    <div class="col-md-8 col-md-offset-2">
+
+      <%= render :partial => 'flash_messages', :flash => flash %>
+      <%= yield %>
+    </div>
+  </div>
+</div>
+</body>
+</html>

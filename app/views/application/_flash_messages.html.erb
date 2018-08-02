@@ -1,0 +1,20 @@
+<% if flash.present? %>
+  <!--  add in controller to use them: add_flash_types :success, :danger, :info-->
+  <!--  example:     redirect_to some_path, type: 'text'-->
+  <div id='flash'>
+    <script>
+        <% if flash[:success] %>
+        var $toastContent = $('<span><%= flash[:success] %></span>');
+        toastr.success($toastContent)
+        <% end %>
+        <% if flash[:info] %>
+        var $toastContent = $('<span><%= flash[:info] %></span>');
+        toastr.info($toastContent)
+        <% end %>
+        <% if flash[:danger] %>
+        var $toastContent = $('<span><%= flash[:danger] %></span>');
+        toastr.error($toastContent)
+        <% end %>
+    </script>
+  </div>
+<% end %>
