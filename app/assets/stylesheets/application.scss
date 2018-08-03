@@ -1,7 +1,13 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "toastr";
+@import "bootstrap-datepicker";
 
 .to-right {
   float: right;
+}
+
+.sign-up.form-control {
+  width: 154px;
+  margin-left: 298px;
 }
