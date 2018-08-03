@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   end
 
   get 'landing_page/index'
+  get 'terms_of_service'=> 'terms_of_service#index'
 
   root 'landing_page#index'
 end
