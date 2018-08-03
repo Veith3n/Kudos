@@ -7,5 +7,6 @@ FactoryBot.define do
     sequence(:email) { |n| "test#{n}@gmail.com" }
     kudos_count 0
     birth_date Date.current
+    terms_of_service true
   end
 end
