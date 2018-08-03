@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_03_091450) do
+ActiveRecord::Schema.define(version: 2018_08_03_141307) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "kudos", force: :cascade do |t|
+    t.bigint "giver_id"
+    t.bigint "receiver_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["giver_id"], name: "index_kudos_on_giver_id"
+    t.index ["receiver_id"], name: "index_kudos_on_receiver_id"
+  end
 
   create_table "teams", force: :cascade do |t|
     t.string "name"
@@ -42,7 +51,6 @@ ActiveRecord::Schema.define(version: 2018_08_03_091450) do
     t.inet "last_sign_in_ip"
     t.string "name"
     t.string "surname"
-    t.integer "kudos_count", default: 0
     t.date "birth_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
