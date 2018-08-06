@@ -8,7 +8,11 @@ Rails.application.routes.draw do
 
   devise_for :users, skip: [:sessions]
 
-  resources :users, only: [:index]
+  resources :users, only: [:index] do
+    member do
+      get '/give_kudo' => 'users#give_kudo'
+    end
+  end
   resources :teams, only: [:index, :show] do
     member do
       get '/add_member' => 'teams#add_member'
