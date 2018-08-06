@@ -53,7 +53,6 @@ RSpec.describe UsersController, type: :controller do
       user.reload
 
       get :give_kudo, params: { id: team_member.id }
-      # byebug
 
       expect(team_member.received_kudos.count).to eq(1)
     end

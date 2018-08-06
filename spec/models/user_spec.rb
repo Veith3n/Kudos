@@ -5,7 +5,7 @@ RSpec.describe User, type: :model do
     it 'can not create user with missing data' do
       user = User.new(name: nil)
 
-      expect(user).to_not be_valid()
+      expect(user).to_not be_valid
     end
   end
 end
