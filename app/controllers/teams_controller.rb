@@ -7,6 +7,7 @@ class TeamsController < ApplicationController
 
   def show
     @team = Team.find(params[:id])
+    @sorted_users_list = @team.users.sort_by { |user| [user.received_kudos.count, -user.id] }.reverse
   end
 
   def add_member
