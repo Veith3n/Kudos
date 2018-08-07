@@ -1,5 +1,5 @@
 class TeamsController < ApplicationController
-  before_action :authenticate_user!, only: %i[add_member remove_member]
+  before_action :authenticate_user!, except: %i[index show]
 
   def index
     @teams = Team.all
@@ -8,6 +8,20 @@ class TeamsController < ApplicationController
   def show
     @team = Team.find(params[:id])
     @sorted_users_list = @team.users.sort_by { |user| [user.received_kudos.count, -user.id] }.reverse
+  end
+
+  def new
+    @team = Team.new
+  end
+
+  def create
+    @team = Team.new(team_params)
+
+    if @team.save
+      redirect_to team_path(@team), notice: 'Created successfully'
+    else
+      render :new
+    end
   end
 
   def add_member
@@ -30,5 +44,11 @@ class TeamsController < ApplicationController
     else
       redirect_to team, alert: 'You are not a member of this team'
     end
+  end
+
+  private
+
+  def team_params
+    params.require(:team).permit(:name, :description)
   end
 end
