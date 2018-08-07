@@ -1,5 +1,5 @@
 class TeamsController < ApplicationController
-  before_action :authenticate_user!, only: %i[add_member remove_member new create]
+  before_action :authenticate_user!, except: %i[index show]
 
   def index
     @teams = Team.all
