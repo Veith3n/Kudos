@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     delete 'sign_out', to: 'devise/sessions#destroy', as: :destroy_user_session
   end
 
-  devise_for :users, skip: [:sessions]
+  devise_for :users, skip: [:sessions], :controllers => { omniauth_callbacks: "users/omniauth_callbacks" }
 
   resources :users, only: [:index] do
     member do
@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   end
 
   get 'landing_page/index'
-  get 'terms_of_service'=> 'terms_of_service#index'
+  get 'terms_of_service' => 'terms_of_service#index'
 
   root 'landing_page#index'
 end
