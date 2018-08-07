@@ -4,7 +4,7 @@ User.destroy_all
 Team.destroy_all
 
 40.times do
-  User.create(name: FFaker::Name.first_name, surname: FFaker::Name.last_name, email: FFaker::Internet.unique.email, password: 'test123#W', password_confirmation: 'test123#W', kudos_count: 0, terms_of_service: true)
+  User.create(name: FFaker::Name.first_name, surname: FFaker::Name.last_name, email: FFaker::Internet.unique.email, password: 'test123#W', password_confirmation: 'test123#W', terms_of_service: true, skip_validation: true)
   print '.'
 end
 
