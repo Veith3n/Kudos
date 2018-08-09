@@ -86,4 +86,47 @@ RSpec.describe UsersController, type: :controller do
       expect(user.received_kudos.count).to eq(0)
     end
   end
+
+  context '#edit and #update' do
+    let(:user) do
+      create(:user)
+    end
+    let(:other_user) do
+      create(:user)
+    end
+
+    it 'update user date' do
+      sign_in(user, scope: :user)
+
+      params = { name: 'New value', surname: user.surname, birth_date: user.birth_date }
+
+      get :update, params: { id: user.id, user: params }
+      user.reload
+
+      expect(user.name).to eq(params[:name])
+    end
+
+    it "won't update with incorrect data" do
+      sign_in(user, scope: :user)
+
+      params = { name: '', surname: user.surname, birth_date: user.birth_date }
+
+      get :update, params: { id: user.id, user: params }
+      user.reload
+
+      expect(user.name).to_not eq(params[:name])
+    end
+
+    it "won't update data for other user" do
+      sign_in(user, scope: :user)
+
+      params = { name: 'New', surname: user.surname, birth_date: user.birth_date }
+
+      get :update, params: { id: other_user.id, user: params }
+      other_user.reload
+
+      expect(response).to redirect_to(root_path)
+      expect(other_user.name).to_not eq(params[:name])
+    end
+  end
 end
