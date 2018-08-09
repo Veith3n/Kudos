@@ -1,5 +1,12 @@
 <h1><%= @team.name %></h1>
 <h2>Team motto: <%= @team.description %></h2>
+<% if user_signed_in? %>
+  <% if current_user.teams.include?(@team) %>
+    <%= link_to 'Leave', remove_member_team_path, class: 'btn btn-red' %>
+  <% else %>
+    <%= link_to 'Join', add_member_team_path, class: 'btn btn-green' %>
+  <% end %>
+<% end %>
 <div class="container">
 
   <div class="row text-left">
@@ -20,18 +27,14 @@
             <td><%= member.name %></td>
             <td><%= member.surname %></td>
             <td class="col-md-1 text-center"><%= member.received_kudos.count %></td>
-            <td class="col-md-1 text-center"><%= link_to 'Give kudo', give_kudo_user_path(member), class: 'btn btn-default' %></td>
+            <% if user_signed_in? %>
+              <td class="col-md-1 text-center"><%= link_to 'Give kudo', give_kudo_user_path(member), class: 'btn btn-default' %></td>
+            <% end %>
           </tr>
         <% end %>
         </tbody>
       </table>
-      <% if user_signed_in? %>
-        <% if current_user.teams.include?(@team) %>
-          <%= link_to 'Leave', remove_member_team_path, class: 'btn btn-default' %>
-        <% else %>
-          <%= link_to 'Join', add_member_team_path, class: 'btn btn-default' %>
-        <% end %>
-      <% end %>
+
       <%= link_to 'Back to all teams', teams_path, class: 'btn btn-default to-right' %>
     </div>
   </div>
