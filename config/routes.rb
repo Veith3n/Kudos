@@ -8,9 +8,11 @@ Rails.application.routes.draw do
 
   devise_for :users, skip: [:sessions], :controllers => { omniauth_callbacks: "users/omniauth_callbacks" }
 
-  resources :users, only: [:index] do
+  resources :users, only: [:index, :update] do
     member do
       get '/give_kudo' => 'users#give_kudo'
+      get '/user_panel' => 'users#edit'
+      post '/user_panel' => 'users#update'
     end
   end
   resources :teams, except: [:edit, :update, :destroy] do

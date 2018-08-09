@@ -1,0 +1,22 @@
+<h3>Edit your data</h3>
+
+<%= form_with scope: :user, local: true do |form| %>
+  <% @user.errors.full_messages.each do |msg| %>
+    <p class="bg-danger"><%= msg %></p>
+  <% end %>
+  <p>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+  </p>
+  <p>
+    <%= form.label :surname %><br>
+    <%= form.text_field :surname %>
+  </p>
+  <div>
+    <%= form.label 'Birth date' %><br/>
+    <%= datepicker_input(form, :birth_date) %>
+  </div>  <br>
+  <p>
+    <%= form.submit 'Submit', class: 'btn btn-primary' %>
+  </p>
+<% end %>
