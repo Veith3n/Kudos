@@ -15,6 +15,10 @@
         <div class="collapse navbar-collapse">
           <form class="navbar-form navbar-right">
             <% if user_signed_in? %>
+              <%= link_to 'Edit your data', user_panel_user_path(current_user), class: 'btn btn-link  float: right' %>
+              <% if current_user.provider == nil %>
+                <%= link_to "Change your password", edit_user_registration_path %>
+              <% end %>
               <%= link_to 'Create team', new_team_path, class: 'btn btn-primary  float: right' %>
             <% end %>
             <% unless current_page?(root_path) %>
