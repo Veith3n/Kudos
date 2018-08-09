@@ -5,6 +5,10 @@ class UsersController < ApplicationController
     @users = User.paginate(page: params[:page], per_page: 15)
   end
 
+  def top10
+    @users = User.all.sort_by { |user| [user.received_kudos.count]}.reverse.first(10)
+  end
+
   def give_kudo
     user = User.find(params[:id])
 

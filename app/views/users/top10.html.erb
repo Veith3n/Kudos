@@ -1,0 +1,23 @@
+<h1>Top 10 Users</h1>
+
+<table class="table"
+       data-pagination="true"
+       data-page-size=5>
+  <thead>
+  <tr>
+    <th class="text-center">Name</th>
+    <th class="text-center">Description</th>
+    <th class="text-center">Kudos Count</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.name %></td>
+      <td><%= user.surname %></td>
+      <td><%= user.received_kudos.count %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
