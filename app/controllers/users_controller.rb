@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!, except: %i[index]
+  before_action :authenticate_user!, except: %i[index top_ten]
 
   def index
     sorted_users = User.all.sort_by { |user| [user.received_kudos.count] }.reverse

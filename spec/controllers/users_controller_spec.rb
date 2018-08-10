@@ -128,7 +128,7 @@ RSpec.describe UsersController, type: :controller do
       expect(other_user.name).to_not eq(params[:name])
     end
   end
-  
+
   context '#top_ten' do
     it('returns correct 10 users') do
       top_ten_users_list = create_list(:user, 10)
