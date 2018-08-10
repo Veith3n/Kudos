@@ -18,6 +18,13 @@
       <td><%= user.name %></td>
       <td><%= user.surname %></td>
       <td><%= user.received_kudos.count %></td>
+      <% if user_signed_in? %>
+        <% if (current_user.teams & user.teams).present? && current_user.id != user.id %>
+          <td class="col-md-1 text-center"><%= link_to 'Give kudo', give_kudo_user_path(user), class: 'btn btn-default' %></td>
+        <% else %>
+          <td class="col-md-1 text-center"></td>
+        <% end %>
+      <% end %>
     </tr>
   <% end %>
   </tbody>

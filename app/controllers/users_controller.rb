@@ -2,7 +2,8 @@ class UsersController < ApplicationController
   before_action :authenticate_user!, only: %i[give_kudo]
 
   def index
-    @users = User.paginate(page: params[:page], per_page: 15)
+    sorted_users = User.all.sort_by { |user| [user.received_kudos.count] }.reverse
+    @users = sorted_users.paginate(page: params[:page], per_page: 15)
   end
 
   def give_kudo
