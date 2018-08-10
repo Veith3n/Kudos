@@ -12,6 +12,11 @@ Rails.application.routes.draw do
     member do
       get '/give_kudo' => 'users#give_kudo'
     end
+
+    collection do
+      get '/profile' => 'users#profile'
+      post '/profile' => 'users#update_profile'
+    end
   end
   resources :teams, except: [:edit, :update, :destroy] do
     member do

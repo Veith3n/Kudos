@@ -1,9 +1,25 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!, only: %i[give_kudo]
+  before_action :authenticate_user!, except: %i[index]
 
   def index
     sorted_users = User.all.sort_by { |user| [user.received_kudos.count] }.reverse
     @users = sorted_users.paginate(page: params[:page], per_page: 15)
+  end
+
+  def profile
+    @user = current_user
+  end
+
+  def update_profile
+    @user = current_user
+
+    @user.skip_validation = false
+
+    if @user.update(user_params)
+      redirect_to root_path, notice: 'Data updated!'
+    else
+      render 'profile'
+    end
   end
 
   def give_kudo
@@ -19,5 +35,11 @@ class UsersController < ApplicationController
     else
       redirect_to request.referrer, alert: 'You are not team members'
     end
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(:name, :surname, :birth_date)
   end
 end
