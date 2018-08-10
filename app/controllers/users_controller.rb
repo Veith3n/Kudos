@@ -22,6 +22,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def top_ten
+    @users = User.all.sort_by { |user| [user.received_kudos.count] }.reverse.first(10)
+  end
+
   def give_kudo
     user = User.find(params[:id])
 

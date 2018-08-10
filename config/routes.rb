@@ -18,6 +18,8 @@ Rails.application.routes.draw do
       post '/profile' => 'users#update_profile'
     end
   end
+  get '/top_ten_users' => 'users#top_ten'
+
   resources :teams, except: [:edit, :update, :destroy] do
     member do
       get '/add_member' => 'teams#add_member'
