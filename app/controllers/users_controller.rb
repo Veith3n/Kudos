@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   end
 
   def top_ten
-    @users = User.all.sort_by { |user| [user.received_kudos.count]}.reverse.first(10)
+    @users = User.all.sort_by { |user| [user.received_kudos.count] }.reverse.first(10)
   end
 
   def give_kudo
