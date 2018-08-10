@@ -13,7 +13,7 @@ Rails.application.routes.draw do
       get '/give_kudo' => 'users#give_kudo'
     end
   end
-  get '/top_10_users' => 'users#top10'
+  get '/top_ten_users' => 'users#top_ten'
 
   resources :teams, except: [:edit, :update, :destroy] do
     member do
