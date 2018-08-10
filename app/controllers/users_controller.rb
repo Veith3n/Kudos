@@ -5,23 +5,19 @@ class UsersController < ApplicationController
     @users = User.paginate(page: params[:page], per_page: 15)
   end
 
-  def edit
-    @user = User.find(params[:id])
-    redirect_to root_path, alert: 'You can only edit your data' if @user != current_user
+  def profile
+    @user = current_user
   end
 
-  def update
-    @user = User.find(params[:id])
-    if @user == current_user
-      @user.skip_validation = false
+  def update_profile
+    @user = current_user
 
-      if @user.update(user_params)
-        redirect_to root_path, notice: 'Data updated!'
-      else
-        render 'edit'
-      end
+    @user.skip_validation = false
+
+    if @user.update(user_params)
+      redirect_to root_path, notice: 'Data updated!'
     else
-      redirect_to root_path, alert: 'You can only edit your data'
+      render 'profile'
     end
   end
 

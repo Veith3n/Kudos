@@ -87,7 +87,7 @@ RSpec.describe UsersController, type: :controller do
     end
   end
 
-  context '#edit and #update' do
+  context '#profile and #update_profile' do
     let(:user) do
       create(:user)
     end
@@ -100,7 +100,7 @@ RSpec.describe UsersController, type: :controller do
 
       params = { name: 'New value', surname: user.surname, birth_date: user.birth_date }
 
-      get :update, params: { id: user.id, user: params }
+      get :update_profile, params: { id: user.id, user: params }
       user.reload
 
       expect(user.name).to eq(params[:name])
@@ -111,7 +111,7 @@ RSpec.describe UsersController, type: :controller do
 
       params = { name: '', surname: user.surname, birth_date: user.birth_date }
 
-      get :update, params: { id: user.id, user: params }
+      get :update_profile, params: { id: user.id, user: params }
       user.reload
 
       expect(user.name).to_not eq(params[:name])
@@ -122,10 +122,9 @@ RSpec.describe UsersController, type: :controller do
 
       params = { name: 'New', surname: user.surname, birth_date: user.birth_date }
 
-      get :update, params: { id: other_user.id, user: params }
+      get :update_profile, params: { id: other_user.id, user: params }
       other_user.reload
 
-      expect(response).to redirect_to(root_path)
       expect(other_user.name).to_not eq(params[:name])
     end
   end
