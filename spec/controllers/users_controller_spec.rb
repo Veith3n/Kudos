@@ -86,4 +86,19 @@ RSpec.describe UsersController, type: :controller do
       expect(user.received_kudos.count).to eq(0)
     end
   end
+
+  context '#top_ten' do
+    it('returns correct 10 users') do
+      top_ten_users_list = create_list(:user, 10)
+      other_users = create_list(:user, 15)
+
+      top_ten_users_list.each do |user|
+        Kudo.create(giver: user, receiver: user)
+      end
+
+      get :top_ten
+
+      expect(assigns(:users)).to match_array(top_ten_users_list)
+    end
+  end
 end
