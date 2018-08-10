@@ -12,6 +12,11 @@ Rails.application.routes.draw do
     member do
       get '/give_kudo' => 'users#give_kudo'
     end
+
+    collection do
+      get '/profile' => 'users#profile'
+      post '/profile' => 'users#update_profile'
+    end
   end
   get '/top_ten_users' => 'users#top_ten'
 
