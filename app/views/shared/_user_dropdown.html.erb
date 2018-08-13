@@ -1,0 +1,17 @@
+<div style="display: inline-flex">
+  <a class='dropdown-toggle float:right' data-toggle='dropdown'>
+    <%= image_tag(current_user.avatar.thumb.url) %>
+    <span class='caret'></span>
+  </a>
+
+  <!--User actions-->
+  <ul class='dropdown-menu diplay:flex'>
+    <li> <%= link_to 'Edit your data', profile_users_path(current_user) %> </li>
+    <% if current_user.provider == nil %>
+      <li class='divider'></li>
+      <li> <%= link_to 'Change your password', edit_user_registration_path %> </li>
+    <% end %>
+    <li class='divider'></li>
+    <li> <%= link_to 'Logout', destroy_user_session_path, method: :delete %> </li>
+  </ul>
+</div>
