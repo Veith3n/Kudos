@@ -1,13 +1,19 @@
 version: 2
-dependencies:
-  override:
-    - mv config/secrets.ci.yml config/secrets.yml
 jobs:
   build:
     working_directory: ~/Kudos
     docker:
       - image: circleci/ruby:2.5.0
-
+    environment:
+          PGHOST: localhost
+          PGUSER: rails
+          RAILS_ENV: test
+          RUN_COVERAGE: true
+      - image: postgres:9.5
+        environment:
+          POSTGRES_USER: rails
+          POSTGRES_DB: Kudos_test
+          POSTGRES_PASSWORD: "password"
 
     steps:
       - checkout
@@ -30,6 +36,7 @@ jobs:
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
 
       # Database setup
+      - run: dockerize -wait tcp://localhost:5432 -timeout 1m
       - run: bundle exec rake db:create
       - run: bundle exec rake db:prepare
 
