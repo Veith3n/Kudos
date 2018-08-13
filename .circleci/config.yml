@@ -4,7 +4,7 @@ jobs:
     working_directory: ~/Kudos
     docker:
       - image: circleci/ruby:2.5.0
-    environment:
+        environment:
           PGHOST: localhost
           PGUSER: rails
           RAILS_ENV: test
