@@ -51,7 +51,7 @@ jobs:
   deploy:
     working_directory: ~/Kudos
     docker:
-      - image: circleci/ruby:2.4.1-node-browsers
+      - image: circleci/ruby:2.5.0
 
     steps:
       - checkout
