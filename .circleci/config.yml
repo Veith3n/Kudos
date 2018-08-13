@@ -58,7 +58,7 @@ jobs:
             heroku run rake db:migrate --app $HEROKU_APP_NAME
 workflows:
   version: 2
-  build-and-deploy:
+  build:
   jobs:
       - build
       - deploy:
