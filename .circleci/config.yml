@@ -62,7 +62,7 @@ jobs:
       - run:
           name: Run db migration on Heroku
           command: |
-            rake db:migrate --app $HEROKU_APP_NAME
+            rake db:migrate
 workflows:
   version: 2
   build:
