@@ -1,10 +1,10 @@
 version: 2
 jobs:
   build:
-    docker:
-       - image: circleci/ruby:2.4.1-node-browsers
-
     working_directory: ~/Kudos
+    docker:
+      - image: circleci/ruby:2.4.1-node-browsers
+
 
     steps:
       - checkout
@@ -43,10 +43,9 @@ jobs:
                             $TEST_FILES
 
   deploy:
-   docker:
-         - image: circleci/ruby:2.4.1-node-browsers
-
-      working_directory: ~/Kudos
+    working_directory: ~/Kudos
+    docker:
+      - image: circleci/ruby:2.4.1-node-browsers
 
     steps:
       - checkout
