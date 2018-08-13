@@ -59,6 +59,9 @@ jobs:
           name: Deploy Master to Heroku
           command: |
             git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git master
+      - run:
+          name: Run db migration on Heroku
+          command: |
             rake db:migrate --app $HEROKU_APP_NAME
 workflows:
   version: 2
