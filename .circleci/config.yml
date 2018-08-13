@@ -1,4 +1,7 @@
 version: 2
+dependencies:
+  override:
+    - mv config/secrets.ci.yml config/secrets.yml
 jobs:
   build:
     working_directory: ~/Kudos
