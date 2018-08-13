@@ -3,6 +3,10 @@
 @import "toastr";
 @import "bootstrap-datepicker";
 
+img {
+  border-radius: 100%;
+}
+
 .to-right {
   float: right;
 }
@@ -18,4 +22,9 @@
 
 .btn-red {
   @include button-variant(white, red, red);
+}
+
+.upload-file {
+  margin: auto;
+  padding-left: 100px;
 }

@@ -15,8 +15,14 @@
   <div>
     <%= form.label :birth_date %><br/>
     <%= datepicker_input(form, :birth_date) %>
-  </div>  <br>
+  </div>
+
+  <div class="field">
+    <%= form.label 'Avatar' %><br/>
+    <%= form.file_field :avatar, class: 'upload-file' %>
+  </div>
+
   <p>
-    <%= form.submit 'Submit', class: 'btn btn-primary' %>
+    <br> <%= form.submit 'Submit', class: 'btn btn-primary' %>
   </p>
 <% end %>
