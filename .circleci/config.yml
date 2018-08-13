@@ -37,8 +37,7 @@ jobs:
 
       # Database setup
       - run: dockerize -wait tcp://localhost:5432 -timeout 1m
-      - run: bundle exec rake db:create
-      - run: bundle exec rake db:prepare
+      - run: bundle exec rake db:test:prepare
 
       # run tests!
       - run:
