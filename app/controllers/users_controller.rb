@@ -39,7 +39,7 @@ class UsersController < ApplicationController
           redirect_to request.referrer, notice: 'You gave a kudo'
         end
       else
-        redirect_to request.referrer, alert: "You can't give more kudos this week"
+        redirect_to request.referrer, alert: 'You have reached your weekly kudos limit'
       end
     else
       redirect_to request.referrer, alert: 'You are not team members'
@@ -49,6 +49,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :surname, :birth_date, :avatar)
+    params.require(:user).permit(:name, :surname, :birth_date, :avatar, :weekly_kudos_limit)
   end
 end
