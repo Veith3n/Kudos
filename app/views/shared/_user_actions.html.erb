@@ -1,4 +1,6 @@
 <% if user_signed_in? %>
+  <% value = (current_user.weekly_kudos_limit - current_user.kudos_given_in_a_week) %>
+  <%= "Kudos left in this week: #{ (value > 0) ? value : 'none'}" %>
   <%= link_to 'Create team', new_team_path, class: 'btn btn-primary  float: right' %>
   <%= render partial: 'shared/user_dropdown' %>
 <% else %>
