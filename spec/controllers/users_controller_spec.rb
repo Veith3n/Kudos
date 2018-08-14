@@ -100,4 +100,61 @@ RSpec.describe UsersController, type: :controller do
     end
 
   end
+
+  context '#profile and #update_profile' do
+    let(:user) do
+      create(:user)
+    end
+    let(:other_user) do
+      create(:user)
+    end
+
+    it 'update user date' do
+      sign_in(user, scope: :user)
+
+      params = { name: 'New value', surname: user.surname, birth_date: user.birth_date }
+
+      post :update_profile, params: { id: user.id, user: params }
+      user.reload
+
+      expect(user.name).to eq(params[:name])
+    end
+
+    it "won't update with incorrect data" do
+      sign_in(user, scope: :user)
+
+      params = { name: '', surname: user.surname, birth_date: user.birth_date }
+
+      post :update_profile, params: { id: user.id, user: params }
+      user.reload
+
+      expect(user.name).to_not eq(params[:name])
+    end
+
+    it "won't update data for other user" do
+      sign_in(user, scope: :user)
+
+      params = { name: 'New', surname: user.surname, birth_date: user.birth_date }
+
+      post :update_profile, params: { id: other_user.id, user: params }
+      other_user.reload
+
+      expect(other_user.name).to_not eq(params[:name])
+    end
+  end
+
+  context '#top_ten' do
+    it('returns correct 10 users') do
+      top_ten_users_list = create_list(:user, 10)
+      other_users = create_list(:user, 15)
+
+      top_ten_users_list.each do |user|
+        Kudo.create(giver: user, receiver: user)
+      end
+
+      get :top_ten
+
+      expect(assigns(:users)).to match_array(top_ten_users_list)
+    end
+  end
 end

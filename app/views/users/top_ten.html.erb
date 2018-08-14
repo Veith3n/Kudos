@@ -1,4 +1,4 @@
-<h1>Users</h1>
+<h1>Top 10 Users</h1>
 
 <table class="table"
        data-pagination="true"
@@ -12,19 +12,11 @@
   </thead>
 
   <tbody>
-  <%= will_paginate @users %>
   <% @users.each do |user| %>
     <tr>
       <td><%= user.name %></td>
       <td><%= user.surname %></td>
       <td><%= user.received_kudos.count %></td>
-      <% if user_signed_in? %>
-        <% if (current_user.teams & user.teams).present? && current_user.id != user.id %>
-          <td class="col-md-1 text-center"><%= link_to 'Give kudo', give_kudo_user_path(user), class: 'btn btn-default' %></td>
-        <% else %>
-          <td class="col-md-1 text-center"></td>
-        <% end %>
-      <% end %>
     </tr>
   <% end %>
   </tbody>

@@ -11,3 +11,11 @@
   width: 154px;
   margin-left: 298px;
 }
+
+.btn-green {
+  @include button-variant(white, green, green);
+}
+
+.btn-red {
+  @include button-variant(white, red, red);
+}
