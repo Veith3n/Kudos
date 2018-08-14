@@ -62,7 +62,10 @@ jobs:
       - run:
           name: Run db migration on Heroku
           command: |
-            sudo snap install heroku --classic
+            wget -qO- https://cli-assets.heroku.com/install-ubuntu.sh | sh
+            mkdir -p /usr/local/lib /usr/local/bin
+            tar -xvzf heroku-linux-amd64.tar.gz -C /usr/local/lib
+            ln -s /usr/local/lib/heroku/bin/heroku /usr/local/bin/heroku
             heroku run rake db:migrate --app fattatahor
 workflows:
   version: 2
