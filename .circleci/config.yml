@@ -67,7 +67,7 @@ jobs:
       - run:
           name: Run db migration on Heroku
           command: |
-            rake db:migrate
+            heroku  run rake db:migrate --app fattatahor
 workflows:
   version: 2
   build:
