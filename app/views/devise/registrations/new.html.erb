@@ -36,6 +36,11 @@
     <%= datepicker_input(f, :birth_date) %>
   </div>
 
+  <div class="field">
+    <%= f.label 'Avatar' %><br/>
+    <%= f.file_field :avatar, class: "upload-file" %>
+  </div>
+
   <br>
 
   <div class="form-check form-check-inline">
