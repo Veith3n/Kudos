@@ -98,7 +98,6 @@ RSpec.describe UsersController, type: :controller do
 
       expect(team_member.received_kudos.count).to eq(0)
     end
-
   end
 
   context '#profile and #update_profile' do
