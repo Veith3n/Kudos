@@ -10,4 +10,8 @@ RSpec.configure do |config|
   end
 
   config.shared_context_metadata_behavior = :apply_to_host_groups
+
+  config.after(:each) do
+    FileUtils.rm_rf(Dir["#{Rails.root}/spec/support/uploads"])
+  end
 end

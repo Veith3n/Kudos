@@ -24,7 +24,10 @@
         <% @sorted_users_list.each do |member| %>
           <tr>
             <th scope="row"> <%= member.id %></th>
-            <td><%= member.name %></td>
+            <td>
+              <%= image_tag(member.avatar.thumb_list.url) %>
+              <%= member.name %>
+            </td>
             <td><%= member.surname %></td>
             <td class="col-md-1 text-center"><%= member.received_kudos.count %></td>
             <% if user_signed_in? %>

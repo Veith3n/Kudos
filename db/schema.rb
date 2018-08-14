@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_07_152221) do
+ActiveRecord::Schema.define(version: 2018_08_07_103828) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 2018_08_07_152221) do
     t.string "provider"
     t.string "uid"
     t.boolean "skip_validation", default: false
+    t.string "avatar"
     t.integer "weekly_kudos_limit", default: 7
     t.integer "kudos_given_in_a_week", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true

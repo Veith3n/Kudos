@@ -1,0 +1,13 @@
+<% if user_signed_in? %>
+  <%= link_to 'Create team', new_team_path, class: 'btn btn-primary  float: right' %>
+  <%= render partial: 'shared/user_dropdown' %>
+<% else %>
+  <% unless current_page?(root_path) %>
+    <% unless current_page?(new_user_session_path) %>
+      <%= link_to 'Login', new_user_session_path, class: 'btn btn-primary' %>
+    <% end %>
+    <% unless current_page?(new_user_registration_path) %>
+      <%= link_to 'Register', new_user_registration_path, class: 'btn btn-info' %>
+    <% end %>
+  <% end %>
+<% end %>

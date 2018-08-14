@@ -6,7 +6,7 @@
   <thead>
   <tr>
     <th class="text-center">Name</th>
-    <th class="text-center">Description</th>
+    <th class="text-center">Surname</th>
     <th class="text-center">Kudos Count</th>
   </tr>
   </thead>
@@ -14,7 +14,10 @@
   <tbody>
   <% @users.each do |user| %>
     <tr>
-      <td><%= user.name %></td>
+      <td>
+        <%= image_tag(user.avatar.thumb_list.url) %>
+        <%= user.name %>
+      </td>
       <td><%= user.surname %></td>
       <td><%= user.received_kudos.count %></td>
     </tr>
