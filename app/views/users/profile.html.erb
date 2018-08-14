@@ -17,12 +17,21 @@
     <%= datepicker_input(form, :birth_date) %>
   </div>
 
+  <p>
   <div class="field">
-    <%= form.label 'Avatar' %><br/>
-    <%= form.file_field :avatar, class: 'upload-file' %>
+    <%= form.label :weekly_kudos_limit %><br/>
+    <%= form.number_field :weekly_kudos_limit, min: 0 %>
   </div>
+  </p>
 
   <p>
-    <br> <%= form.submit 'Submit', class: 'btn btn-primary' %>
+  <div class="field">
+    <%= form.label :avatar %><br/>
+    <%= form.file_field :avatar, class: 'upload-file' %>
+  </div>
+  </p>
+
+  <p>
+    <%= form.submit 'Submit', class: 'btn btn-primary' %>
   </p>
 <% end %>

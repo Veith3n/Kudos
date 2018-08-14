@@ -85,6 +85,19 @@ RSpec.describe UsersController, type: :controller do
 
       expect(user.received_kudos.count).to eq(0)
     end
+
+    it "won't give more kudos than weekly limit" do
+      sign_in(user, scope: :user)
+      user.weekly_kudos_limit = 7
+      user.kudos_given_in_a_week = 7
+
+      team.users << [user, team_member]
+
+      get :give_kudo, params: { id: team_member.id }
+      team_member.reload
+
+      expect(team_member.received_kudos.count).to eq(0)
+    end
   end
 
   context '#profile and #update_profile' do
