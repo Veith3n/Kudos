@@ -65,6 +65,8 @@ end
 
 group :test do
   gem 'capybara'
+  gem 'simplecov', require: false, group: :test
+
 end
 
 
